@@ -1,0 +1,16 @@
+
+
+
+
+
+
+
+
+
+div{
+  display: inline-block;
+}
+
+.clearfix{
+  clear: both;
+}
