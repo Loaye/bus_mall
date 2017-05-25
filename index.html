@@ -10,30 +10,36 @@
     <header>
       <h1>Bus Mall</h1>
 
-      <span>What is your favourite product?</span>
+      <span>Pick the images you like best!</span>
     </header>
 
 <!-- Design pop up banner with a name of the product per image -->
-    <main>
-      <div>
-        <img src="http://placehold.it/300x300">
-        <span>Pop Up Banner 1</span>
-      </div>
+    <main class="productContainer">
+        <div class="productBox">
+          <img src="" id="productLeft">
+        </div>
 
-      <div>
-        <img src="http://placehold.it/300x300">
-        <span>Pop Up Banner 2</span>
-      </div>
+        <div class="productBox">
+          <img src="" id="productCenter">
+        </div>
 
-      <div>
-        <img src="http://placehold.it/300x300">
-        <span>Pop Up Banner 3</span>
-      </div>
+        <div class="productBox">
+          <img src="" id="productRight">
+        </div>
 
-      <div class="clearfix"></div>
+        <div class="clearfix"></div>
+
+      <section class="results">
+        <button id="button" hidden>Results Here!</button>
+      </section>
   </body>
   <footer>
+    <div>
+      <ul id="results">
+    </div>
+
   </footer>
 
   <script src="app.js"></script>
+
 </html>
