@@ -14,30 +14,32 @@
     </header>
 
 <!-- Design pop up banner with a name of the product per image -->
-    <main>
-      <div>
-        <img id="photo-one" src="http://placehold.it/300x300">
-      </div>
+    <main class="productContainer">
+        <div class="productBox">
+          <img src="" id="productLeft">
+        </div>
 
-      <div>
-        <img id="photo-two" src="http://placehold.it/300x300">
-      </div>
+        <div class="productBox">
+          <img src="" id="productCenter">
+        </div>
 
-      <div>
-        <img id="photo-three" src="http://placehold.it/300x300">
-      </div>
+        <div class="productBox">
+          <img src="" id="productRight">
+        </div>
 
-      <div class="clearfix"></div>
+        <div class="clearfix"></div>
+
+      <section class="results">
+        <button id="button" hidden>Results Here!</button>
+      </section>
   </body>
   <footer>
     <div>
       <ul id="results">
     </div>
 
-    <div>
-      <canvas id="chart" width="400" height="400"></canvas>
-    </div>
   </footer>
 
   <script src="app.js"></script>
+
 </html>

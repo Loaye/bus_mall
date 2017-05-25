@@ -1,20 +1,14 @@
 'use strict';
-var imgArr = [];
-var imgDisplayed = [];
-var lastShown = [];
-var counter = 0;
-var list = document.getElementById('list');
 
-// Creating a constructor for each product
-function Product(name, path){
-  this.name = name;
-  this.path = path;
-  this.timesclicked = 0;
-  this.timesselected = 0;
-  imagesArray.push(this);
+//Constructors for products
+function Product(productName, filePath){
+  this.productName = productName;
+  this.filePath = filePath;
+  this.timesDisplayed = 0;
+  this.clicks = 0;
 }
 
-//Create array of product objects//
+//Creating Instances
 var bag = new Product('bag', 'image/bag.jpg');
 var banana = new Product('banana', 'image/banana.jpg');
 var bathroom = new Product('bathroom', 'image/bathroom.jpg');
@@ -35,29 +29,98 @@ var unicorn = new Product('unicorn', 'image/unicorn.jpg');
 var usb = new Product('usb', 'image/usb.gif');
 var waterCan = new Product('waterCan', 'image/water-can.jpg');
 
-//Random image generator from array for three images at one time
-function randomImages(max){
-  for(var x = 0; x < 3; x++);{
-    imgDisplayed.push(imgArr[Math.floor(Math.random() * max)]);
-  } while(imgDisplayed[0] === lastShown[0] || imgDisplayed[0] === lastShown[1] || imgDisplayed === lastShown[2] || imgDisplayed[0] === imgDisplayed[1] || imgDisplayed[0] === imgDisplayed[2]){
-    imgDisplayed.splice(0, 1, imgArr[Math.floor(Math.random() * max)]);
-  }   while(imgDisplayed[1] === lastShown[0] || imgDisplayed[1] === lastShown[1] || imgDisplayed[1] === lastShown[2] || imgDisplayed[1] === imgDisplayed[0] || imgDisplayed[1] === imgDisplayed[2]){
-    imgDisplayed.splice(1, 1, imgArr[Math.floor(Math.random() * max)]);
+//Instances get pushed into the array
+var productsList = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan];
+
+//Assigning a variable to a displayed spot
+var productLeft = document.getElementById('productLeft');
+var productCenter = document.getElementById('productCenter');
+var productRight = document.getElementById('productRight');
+
+//Event listener per displayed position
+productLeft.addEventListener('click', clickOnProductLeft);
+productCenter.addEventListener('click', clickOnProductCenter);
+productRight.addEventListener('click', clickOnProductRight);
+
+var randomNumberLeft, randomNumberCenter, randomNumberRight;
+
+//Function to create the images
+imageMaker();
+
+//Total clicks start at 0
+var totalClicks;
+
+//Creating 3 functions per image position
+function clickOnProductLeft(){
+  productsList[randomNumberLeft].clicks++;
+  console.log('was clicked');
+  imageMaker();
+  totalClicks += 1;
+  console.log('The total number of clicks is ' + totalClicks);
+  if(totalClicks === 15){
+    displayResults();
   }
-  while(imgDisplayed[2] === lastShown[0] || imgDisplayed[2] === lastShown[1] || imgDisplayed[2] === lastShown[2] || imgDisplayed[2] === imgDisplayed[1] || imgDisplayed[2] === imgDisplayed[0]){
-    imgDisplayed.splice(2, 1, imgArr[Math.floor(Math.random() * max)]);
-  }
-  return imgDisplayed;
 }
 
-randomImages(imgArr.length);
-
-//Clicks through the images
-function clicking(click){
-  for (var i = 0; i < imgArr.length; i++){
-    if(imgArr[i].name === click) {
-      imgArr[i].timesclicked ++;
-      console.log(imgArr[i].timesclicked);
-    }
+function clickOnProductCenter(){
+  productsList[randomNumberLeft].clicks++;
+  console.log('was clicked');
+  imageMaker();
+  totalClicks += 1;
+  console.log('The total number of clicks is ' + totalClicks);
+  if(totalClicks === 15){
+    displayResults();
   }
+}
+
+function clickOnProductRight(){
+  productsList[randomNumberLeft].clicks++;
+  console.log('was clicked');
+  imageMaker();
+  totalClicks += 1;
+  console.log('The total number of clicks is ' + totalClicks);
+  if(totalClicks === 15){
+    displayResults();
+  }
+}
+
+//Creating a random number to later assign to an image
+function randomNum(){
+  var randomNumber = Math.floor(Math.random() * productsList.length);
+  return randomNumber;
+}
+
+//Function that creates a set of 3 to display on the screen
+function imageMaker(){
+  randomNumberLeft = randomNum();
+  console.log(randomNumberLeft);
+  randomNumberCenter = randomNum();
+  while(randomNumberLeft === randomNumberCenter){
+    randomNumberCenter = randomNum();
+  }
+  console.log(randomNumberCenter);
+  randomNumberRight = randomNum;
+  while(randomNumberRight === randomNumberLeft || randomNumberRight === randomNumberCenter){
+    randomNumberRight = randomNum();
+  }
+  console.log(randomNumberRight);
+  productLeft.src = productsList[randomNumberLeft].filePath;
+  productsList[randomNumberLeft].timesDisplayed++;
+  productCenter.src = productsList[randomNumberCenter].filePath;
+  productsList[randomNumberCenter].timesDisplayed++;
+  productRight.src = productsList[randomNumberRight].filePath;
+  productsList[randomNumberRight].timesDisplayed++;
+}
+
+var button = document.getElementById('button');
+
+//After results are given, removes hidden button attribure so you can get results
+function displayResults(){
+  button.removeAttribute('hidden');
+}
+
+button.addEventListener('click', buttonClicked);
+
+function buttonClicked(){
+
 }
