@@ -1,13 +1,17 @@
 'use strict';
-
+var imgArr = [];
+var imgDisplayed = [];
+var lastShown = [];
 var counter = 0;
+var list = document.getElementById('list');
 
 // Creating a constructor for each product
-function Product(name, url){
+function Product(name, path){
   this.name = name;
-  this.url = url;
+  this.path = path;
   this.timesclicked = 0;
   this.timesselected = 0;
+  imagesArray.push(this);
 }
 
 //Create array of product objects//
@@ -30,3 +34,30 @@ var tauntaun = new Product('tauntaun', 'image/tauntaun.jpg');
 var unicorn = new Product('unicorn', 'image/unicorn.jpg');
 var usb = new Product('usb', 'image/usb.gif');
 var waterCan = new Product('waterCan', 'image/water-can.jpg');
+
+//Random image generator from array for three images at one time
+function randomImages(max){
+  for(var x = 0; x < 3; x++);{
+    imgDisplayed.push(imgArr[Math.floor(Math.random() * max)]);
+  } while(imgDisplayed[0] === lastShown[0] || imgDisplayed[0] === lastShown[1] || imgDisplayed === lastShown[2] || imgDisplayed[0] === imgDisplayed[1] || imgDisplayed[0] === imgDisplayed[2]){
+    imgDisplayed.splice(0, 1, imgArr[Math.floor(Math.random() * max)]);
+  }   while(imgDisplayed[1] === lastShown[0] || imgDisplayed[1] === lastShown[1] || imgDisplayed[1] === lastShown[2] || imgDisplayed[1] === imgDisplayed[0] || imgDisplayed[1] === imgDisplayed[2]){
+    imgDisplayed.splice(1, 1, imgArr[Math.floor(Math.random() * max)]);
+  }
+  while(imgDisplayed[2] === lastShown[0] || imgDisplayed[2] === lastShown[1] || imgDisplayed[2] === lastShown[2] || imgDisplayed[2] === imgDisplayed[1] || imgDisplayed[2] === imgDisplayed[0]){
+    imgDisplayed.splice(2, 1, imgArr[Math.floor(Math.random() * max)]);
+  }
+  return imgDisplayed;
+}
+
+randomImages(imgArr.length);
+
+//Clicks through the images
+function clicking(click){
+  for (var i = 0; i < imgArr.length; i++){
+    if(imgArr[i].name === click) {
+      imgArr[i].timesclicked ++;
+      console.log(imgArr[i].timesclicked);
+    }
+  }
+}
