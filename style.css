@@ -37,20 +37,12 @@ span{
 }
 
 .productBox > img{
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   margin: auto;
   border-style: solid;
 }
 
-.results{
-  display: flex;
-  flex-direction: row;
-}
-
-button{
-
-}
 
 .clearfix{
   clear: both;

@@ -18,6 +18,10 @@ function Product(name, path){
   productsArray.push(this);
 }
 
+Product.prototype.percentage = function() {
+  return (this.clickCounter / this.displayCounter) * 100.0;
+};
+
 //Instantiatiing new products
 var bag = new Product('bag', 'image/bag.jpg');
 var banana = new Product('banana', 'image/banana.jpg');
@@ -83,8 +87,8 @@ function newClick(e){
       clicks ++;
     }
   }
-  stop();
   render();
+  stop();
 }
 
 function stop(){
@@ -121,10 +125,10 @@ function randomColors() {
 
 //Chart displays value obtained
 function results() {
-  var canvas = document.getElementById('mychart');
+  var canvas = document.getElementById('chart');
   var ctx = canvas.getContext('2d');
 
-  var mychart = new Chart(ctx, {
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: getPropVals('name'),
@@ -132,15 +136,14 @@ function results() {
         label: 'Product Clicks',
         data: getPropVals('clickCounter'),
         backgroundColor: randomColors()
+      }, {
+        label: 'Times Shown',
+        data: getPropVals('shownCounter')
       }]
     },
     options: {
-      legend: {display: false},
-      title: {
-        display: true,
-        fontSize: 20,
-        text: 'Clicks Per Product'
-      }
+      responsive: false,
+      fontSize: 20,
     }
   });
 }
