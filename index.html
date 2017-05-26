@@ -15,29 +15,22 @@
 
 <!-- Design pop up banner with a name of the product per image -->
     <main class="productContainer">
-        <div class="productBox">
+        <section id="productBox">
           <img src="" id="productLeft">
-        </div>
-
-        <div class="productBox">
           <img src="" id="productCenter">
-        </div>
-
-        <div class="productBox">
           <img src="" id="productRight">
-        </div>
+        </section>
 
         <div class="clearfix"></div>
 
       <section class="results">
         <button id="button" hidden>Results Here!</button>
       </section>
+    </main>
   </body>
-  
+
   <footer>
-    <div>
-      <canvas id="myChart" width="400" height="400"></canvas>
-    </div>
+      <canvas id="chart" width="400" height="400"></canvas>
   </footer>
 
   <script src="library/chart.js"></script>
